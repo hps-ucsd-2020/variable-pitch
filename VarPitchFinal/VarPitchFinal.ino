@@ -8,11 +8,19 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //MACROS
 
+// are we using a pcb? comment out if no, else please leave
+#define NEW_BINDS 1
+
 //Hall Effect
-#define hallPin 2
+#ifdef NEW_BINDS
+  #define hallPin 2
+#else
+  #define hallPin 2
+#endif
 #define UPDATE_TIME 500 //Update rpm every 2 millisecond
 #define UPDATE_SECS 1
 #define NUM_MAGNETS 5
+//TODO what is actually happening with this nonexistant led? Should find out
 #define ledPin 13
 
 //Ciruclar Buffer
@@ -24,8 +32,13 @@
 #define GEAR_RATIO 20
 
 //Servo
-#define PIN_PWM 5
-#define PIN_FEEDBACK 4
+#ifdef NEW_BINDS
+  #define PIN_PWM 11
+  #define PIN_FEEDBACK 12
+#else
+  #define PIN_PWM 5
+  #define PIN_FEEDBACK 4
+#endif
 #define END_ANGLE 330
 #define DC_MIN 2.9        //from Parallax spec sheet
 #define DC_MAX 97.1       //from Parallax spec sheet
@@ -35,9 +48,15 @@
 #define KD 0.01
 
 //Setting zero
-#define BUTTON_RIGHT 8
-#define BUTTON_LEFT 9
-#define BUTTON_STATE 10
+#ifdef NEW_BINDS
+  #define BUTTON_RIGHT 9
+  #define BUTTON_LEFT 8
+  #define BUTTON_STATE 7
+#else
+  #define BUTTON_RIGHT 8
+  #define BUTTON_LEFT 9
+  #define BUTTON_STATE 10
+#endif
 #define CONTROL_PERIOD 20000    //Control signal requires a 20 ms period, 20ms = 20000us
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -374,4 +393,3 @@ int setServoSpeed(float input){
   return high_time;
   }
 }
-
